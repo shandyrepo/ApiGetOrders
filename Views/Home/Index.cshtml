@@ -1,0 +1,22 @@
+﻿@model bool
+
+<h1>Авторизация</h1>
+
+@if (Model)
+{
+    <p>
+        <a>Теперь вы можете получить список заказов</a>
+    </p>
+    <p>
+        <a asp-area="" asp-controller="Home" asp-action="GetOrderList">Получить заказы</a>
+    </p>
+}
+else
+{
+    <p>
+        <a>Неудачная авторизация</a>
+    </p>
+    <p>
+        <a asp-area="" asp-controller="Home" asp-action="Index">Войти</a>
+    </p>
+}

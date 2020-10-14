@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ApiGetOrders.Models.Response.Orders>
+
+@{
+    ViewData["Title"] = "GetOrderList";
+}
+
+<h1>Список заказов</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+
+    @foreach (var item in Model)
+    {
+
+        <div class="order" style="border: 1px solid black;width: 100%; display: flex;margin-top: 10px;">
+
+            <div class="customer" style="border-right: 1px solid black;margin-left: 5px;width: 30%;border-bottom: 1px dotted black;">
+                <div style="border-bottom:1px dashed grey">Пользователь</div>
+                <div>
+                    ID : @Html.DisplayFor(modelItem => item.UserId)
+                </div>
+                @if (item.DeliveryAddress != null && item.DeliveryAddress.FullName != null)
+                {
+            <div>
+                Имя : @Html.DisplayFor(modelItem => item.DeliveryAddress.FullName)
+            </div>
+                }
+                else
+                {
+                    <div style="color:red;">
+                        Имя : Не указано
+                    </div>
+                }
+
+            </div>
+            <div class="orderInfo" style=" width: 70%; margin-left: 5px; border-bottom: 1px dotted black;">
+                <div style="border-bottom:1px dashed grey">Информация по заказу</div>
+                <div>
+                    ID : @Html.DisplayFor(modelItem => item.Id)
+                </div>
+                <div>
+                    Наименование : @Html.DisplayFor(modelItem => item.Title)
+                </div>
+                <div>
+                    Общая стоимость : @Html.DisplayFor(modelItem => item.TotalPrice)
+                </div>
+
+            </div>
+        </div>
+
+
+
+                }
+    @*<tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    @if (item.DeliveryAddress != null && item.DeliveryAddress.FullName != null)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DeliveryAddress.FullName)
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            Имя не указано
+                        </td>
+               }
+                </tr>
+            }
+        </tbody>*@
