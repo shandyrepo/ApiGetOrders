@@ -1,5 +1,6 @@
 ﻿using ApiGetOrders.Sevices.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace ApiGetOrders.Controllers
@@ -10,7 +11,7 @@ namespace ApiGetOrders.Controllers
         private readonly IApiService _apiService;
         public HomeController(IApiService apiService)
         {
-            _apiService = apiService;
+            _apiService = apiService ?? throw new NullReferenceException();
         }
 
         public async Task<IActionResult> Index()

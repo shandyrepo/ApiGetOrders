@@ -11,10 +11,10 @@ namespace ApiGetOrders.Sevices
 {
     public class ApiService : IApiService
     {
-        private AuthentificationModel _authentificationData;
+        private readonly AuthentificationModel _authentificationData;
         public ApiService(AuthentificationModel authentificationData)
         {
-            _authentificationData = authentificationData;
+            _authentificationData = authentificationData ?? throw new NullReferenceException();
             ApiHelper.InitializeClient(_authentificationData.BaseUrl);
         }
 
@@ -53,7 +53,7 @@ namespace ApiGetOrders.Sevices
             }
             return null;
         }
-        public async Task<RequestTokenData> GetRequestToken()
+        private async Task<RequestTokenData> GetRequestToken()
         {
             using HttpResponseMessage response = await ApiHelper.Client.GetAsync(new Uri(_authentificationData.BaseUrl + "oauth/requesttoken"));
             if (response.IsSuccessStatusCode)
